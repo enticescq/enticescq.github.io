@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>http原理 | 超大神滴博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="http,原理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="http原理">
+<meta property="og:url" content="https://yeweiyan.top/2019/07/29/http-Principle/index.html">
+<meta property="og:site_name" content="超大神滴博客">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://yeweiyan.top/2019/07/29/http-Principle/http-Principle/344f679609.jpg">
+<meta property="og:image" content="https://yeweiyan.top/2019/07/29/http-Principle/http%E5%8E%9F%E7%90%86/6e7.png">
+<meta property="og:updated_time" content="2019-07-29T13:34:38.356Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="http原理">
+<meta name="twitter:image" content="https://yeweiyan.top/2019/07/29/http-Principle/http-Principle/344f679609.jpg">
+  
+    <link rel="alternative" href="/atom.xml" title="超大神滴博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">scq</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我的地盘我做主，嘻嘻</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area" style="min-height: 280px;">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/">作品展示</a></li>
+                        
+                            <li><a href="/">留言打卡</a></li>
+                        
+                            <li><a href="/">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1144282310@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="/" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/H5C3/" style="font-size: 10px;">H5C3</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/flex布局/" style="font-size: 10px;">flex布局</a> <a href="/tags/function/" style="font-size: 10px;">function</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js经验总结/" style="font-size: 10px;">js经验总结</a> <a href="/tags/v-model/" style="font-size: 10px;">v-model</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原理/" style="font-size: 10px;">原理</a> <a href="/tags/原生/" style="font-size: 10px;">原生</a> <a href="/tags/去重/" style="font-size: 10px;">去重</a> <a href="/tags/双向绑定原理/" style="font-size: 10px;">双向绑定原理</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/生命周期函数/" style="font-size: 10px;">生命周期函数</a> <a href="/tags/网盘/" style="font-size: 10px;">网盘</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱音乐、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                    
+                </section>
+                
+               
+            </div>
+            
+        </div>
+        <iframe  frameborder="no" border="0" marginwidth="0" marginheight="0" width=230 height=86 src="//music.163.com/outchain/player?type=2&id=29827166&auto=1&height=66"></iframe>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">scq</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">scq</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我的地盘我做主，嘻嘻</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/">作品展示</a></li>
+                
+                    <li><a href="/">留言打卡</a></li>
+                
+                    <li><a href="/">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1144282310@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="/" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-http-Principle" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/29/http-Principle/" class="article-date">
+      <time datetime="2019-07-29T13:00:41.000Z" itemprop="datePublished">2019-07-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      http原理
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+    <div class="article-tag tagcloud">
+        <ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/http/">http</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/原理/">原理</a></li></ul>
+    </div>
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="http-Principle/344f679609.jpg" alt="image text"></p>
+<a id="more"></a>
+
+<p>名词说明：</p>
+<ul>
+<li>HTTP（HyperText Transfer Protocol）超文本传输协议</li>
+<li>SGML（Standard Generalized Markup Language）标准通用标记语言</li>
+<li>URL（Uniform Resource Locator）统一资源定位符</li>
+<li>URI（Uniform Resource Identifer）统一资源标识符</li>
+<li>TCP（Transmission Control Protocol）传输控制协议</li>
+<li>IP（Internet Protocol）网际协议</li>
+<li>UDP（User Data Protocol）用户数据报协议</li>
+<li>MAC地址（Media Access Control）媒体访问控制地址／物理地址／硬件地址</li>
+<li>ARP协议（Address Resolution Protocol）地址解析协议</li>
+</ul>
+<hr>
+<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p><b>TCP/IP</b></p>
+<p>TCP/IP是互联网相关的各类协议族的总称，而HTTP是TCP/IP协议族中的一个子集。</p>
+<p>TCP/IP协议族可以分为以下四层：</p>
+<ul>
+<li><p>应用层(决定了向用户提供应用服务时通信的活动。TCP/IP协议族内预存了各类通用的应用服务，如HTTP、FTP、DNS等)</p>
+</li>
+<li><p>传输层(提供处于网络连接中的两台计算机之间的数据传输。包含两个协议：TCP、UDP)</p>
+</li>
+<li><p>网络层(或网络互连层。用来处理网络上流动的数据包，在众多的选项中选择一条传输线路，将数据包传送到对方计算机。包含的协议如：IP协议</p>
+</li>
+<li><p>数据链路层(或链路层、网络接口层。用来处理连接网络的硬件部分)</p>
+<p><b>TCP协议</b><br>TCP协议位于传输层，提供可靠的字节流服务(即将大数据块分割成以报文段为单位的数据包进行管理)。</p>
+</li>
+</ul>
+<p>为了确保数据准确无误的到达目标处，TCP协议通常采用三次握手策略。</p>
+<p><img src="http%E5%8E%9F%E7%90%86/6e7.png" alt="image text"></p>
+<p>若在握手过程中某个阶段莫名中断，TCP协议会再次以相同的顺序发送相同的数据包。</p>
+<p><b>IP协议</b></p>
+<p>IP协议位于网络层，负责将各种数据包传送给对方，为了保证确实传送成功，需要满足各类条件，其中两个重要的条件是IP地址和MAC地址。</p>
+<ul>
+<li>IP地址，指明了节点被分配到的地址</li>
+<li>MAC地址，指网卡所属的固定地址</li>
+<li>IP地址可以和MAC地址进行配对，IP地址可以变换，但是MAC地址基本上不会更改</li>
+<li>使用ARP地址解析协议可以根据通信方的IP地址反查出对应的MAC地址</li>
+</ul>
+<p><b>DNS协议</b><br>DNS协议位于应用层，提供域名到IP地址之间的解析服务。</p>
+<p><b>URI与URL</b><br>URI是由某个协议方案表示的资源的定位标识符，协议方案是指访问资源所使用的协议类型名称，如http、ftp、file等。</p>
+<p>URI用字符串标识某一互联网资源，而URL表示资源的地点，URL是URI的子集。</p>
+<h3 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h3><p>HTTP协议用于客户端和服务器端之间的通信。请求必定由客户端发出，而服务器端回复响应。</p>
+<ul>
+<li>客户端：请求文本或图像等资源</li>
+<li>服务器端：提供资源响应</li>
+</ul>
+<p>HTTP协议不保存状态，为无状态协议。这是为了更快的处理大量事务，确保协议的可伸缩性而特意设计的。但是随着Web的不断发展，这一特性也引发了一些问题，如：如何保持登录状态、如何记录用户信息等，为了解决这一问题，引入了Cookie技术。</p>
+<p>HTTP协议通过URI定义资源</p>
+<p><b>HTTP报文</b></p>
+<p>用于HTTP协议交互的信息被称为报文。报文由报文首部、空行(CR+LF)、报文主体组成。</p>
+<ul>
+<li>请求报文，客户端发送请求的报文。请求报文首部由请求行、请求首部字段、通用首部字段、实体首部字段以及其他组成</li>
+<li>响应报文，服务器端响应的报文。响应报文首部由状态行、响应首部字段、通用首部字段、实体首部字段以及其他组成</li>
+</ul>
+<p><b>HTTP首部字段</b></p>
+<p>HTTP首部字段是构成HTTP报文的要素之一，在客户端与服务器之间以HTTP协议进行通讯的过程中，无论是请求还是响应都会使用首部字段，它能起到传递额外终于信息的作用。使用首部字段是为了给浏览器和服务器提供报文主体大小、所使用的语言、认证信息等内容。</p>
+<p><b>HTTP方法</b></p>
+<table>
+<thead>
+<tr>
+<th align="center">方法名称</th>
+<th align="left">方法描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">GET</td>
+<td align="left">获取资源</td>
+</tr>
+<tr>
+<td align="center">POST</td>
+<td align="left">传输实体主体</td>
+</tr>
+<tr>
+<td align="center">PUT</td>
+<td align="left">传输文件，自身不带验证机制 ，在无验证机制或不遵守REST标准时不建议使用</td>
+</tr>
+<tr>
+<td align="center">DELETE</td>
+<td align="left">删除文件，自身不带验证机制</td>
+</tr>
+<tr>
+<td align="center">HEAD</td>
+<td align="left">获取报文首部，和GET方法一样，不返回报文主体部分</td>
+</tr>
+<tr>
+<td align="center">OPTIONS</td>
+<td align="left">询问支持的方法，返回服务器所支持的方法</td>
+</tr>
+<tr>
+<td align="center">TRACE</td>
+<td align="left">追踪路径，可以通过该方法查询发送出去的请求是如何被加工修改或篡改的。容易引发XST攻击，不常用。</td>
+</tr>
+<tr>
+<td align="center">CONNECT</td>
+<td align="left">要求用隧道协议连接代理</td>
+</tr>
+</tbody></table>
+<p><b>HTTP状态码</b></p>
+<p>状态码用来描述请求的结果</p>
+<ul>
+<li>1XX Informational 信息性状态码，接收的请求正在处理</li>
+<li>2XX Success 成功状态码，请求正常处理完毕</li>
+<li>3XX Redirection 重定向状态码，需要进行附加操作以完成请求</li>
+<li>4XX Client Error 客户端错误状态码，服务器无法处理请求</li>
+<li>5XX Server Error 服务器错误状态码，服务器处理请求出错</li>
+</ul>
+<p>常用的状态码：</p>
+<table>
+<thead>
+<tr>
+<th align="center">状态码</th>
+<th align="center">状态内容</th>
+<th align="left">状态描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">200</td>
+<td align="center">OK</td>
+<td align="left">表示客户端的请求在服务器端被正常处理</td>
+</tr>
+<tr>
+<td align="center">204</td>
+<td align="center">No Condent</td>
+<td align="left">表示请求被成功处理，但是不返回任何实体的主体，在浏览器中表现为页面不发生更新</td>
+</tr>
+<tr>
+<td align="center">206</td>
+<td align="center">Partial Condent</td>
+<td align="left">表示客户端进行了范围请求，且服务器成功执行了这部分的GET请求</td>
+</tr>
+<tr>
+<td align="center">301</td>
+<td align="center">Moved Permanently</td>
+<td align="left">永久性重定向，表示请求的资源已经被分配了新的URI，以后应使用新的URI访问</td>
+</tr>
+<tr>
+<td align="center">302</td>
+<td align="center">Found</td>
+<td align="left">临时性重定向，表示请求的资源已经被分配了新的URI，希望用户本次使用新的URI访问</td>
+</tr>
+<tr>
+<td align="center">303</td>
+<td align="center">See Other</td>
+<td align="left">与302功能相同，但是303状态码明确表示客户端应采用GET方法获取资源</td>
+</tr>
+<tr>
+<td align="center">304</td>
+<td align="center">Not Modified</td>
+<td align="left">表示客户端发送附带条件的请求时，服务器端允许访问资源，但当条件不满足时，返回304状态码</td>
+</tr>
+<tr>
+<td align="center">307</td>
+<td align="center">Temporary Redirect</td>
+<td align="left">临时重定向，与302状态码含义相同，307状态码会遵照浏览器标准，不会从POST变成GET，但是对于处理相应时的行为，每种浏览器有可能出现不同的情况</td>
+</tr>
+<tr>
+<td align="center">400</td>
+<td align="center">Bad Request</td>
+<td align="left">表示请求报文中存在语法错误</td>
+</tr>
+<tr>
+<td align="center">401</td>
+<td align="center">Unauthorized</td>
+<td align="left">表示需要有HTTP认证的认证信息或者用户认证失败</td>
+</tr>
+<tr>
+<td align="center">403</td>
+<td align="center">Forbidden</td>
+<td align="left">表示对请求资源的访问被服务器拒绝了</td>
+</tr>
+<tr>
+<td align="center">404</td>
+<td align="center">Not Found</td>
+<td align="left">表示服务器上无法找到请求的资源</td>
+</tr>
+<tr>
+<td align="center">500</td>
+<td align="center">Internal Server Error</td>
+<td align="left">表示服务器在执行请求时发生了错误或者web应用存在的bug或者某些临时故障</td>
+</tr>
+<tr>
+<td align="center">503</td>
+<td align="center">Service Unavailable</td>
+<td align="left">表示服务器暂时处于超负载或者正在停机维护，无法处理请求</td>
+</tr>
+</tbody></table>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">赏我点糖果吃吃</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/wexin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/29/http-Principle/">http原理</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 scq 的个人博客">scq</a></p>
+        <p><span>发布时间:</span>2019年07月29日 - 21时00分</p>
+        <p><span>最后更新:</span>2019年07月29日 - 21时34分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/29/http-Principle/" title="http原理">https://yeweiyan.top/2019/07/29/http-Principle/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yeweiyan.top/2019/07/29/http-Principle/　　作者: scq" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/07/29/ArrayNot/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          ArrayNot
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/29/web-nterview/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">前端面试</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#基础"><span class="toc-number">1.</span> <span class="toc-text">基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HTTP协议"><span class="toc-number">2.</span> <span class="toc-text">HTTP协议</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: '',
+      repo: '',
+      oauth: {
+        client_id: '',
+        client_secret: '',
+      },
+    })
+    gitment.render('gitments')
+</script> -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/07/29/ArrayNot/" title="上一篇: ArrayNot">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/07/29/web-nterview/" title="下一篇: 前端面试">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/vue_v-modle/">vue双向绑定原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/vue-cllblack/">vue-cllblack</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/summary/">summary</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/regexp/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/music/">music</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/js-Bulletframe/">js弹框</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/H5C3-new/">H5C3属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/flex/">flex</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/encapsulation/">encapsulation</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/baiduW/">百度网盘《齐天大圣资源》</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/ArrayNot/">ArrayNot</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/http-Principle/">http原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/web-nterview/">前端面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/browser-Compatible/">浏览器兼容</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 scq
+            </div>
+            <div class="footer-right">
+                <a href="javascript:" target="_blank">博客</a>   <a href="" target="_blank"></a> 
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>

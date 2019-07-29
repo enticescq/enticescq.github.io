@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="utf-8">
+  
+  <title>正则表达式 | 超大神滴博客</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="keywords" content="关键字">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式">
+<meta property="og:url" content="https://yeweiyan.top/2019/07/29/regexp/index.html">
+<meta property="og:site_name" content="超大神滴博客">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://yeweiyan.top/2019/07/29/regexp/bg.png">
+<meta property="og:image" content="https://yeweiyan.top/2019/07/29/regexp/my-first-boke/Hong_Kong_Skyline_by_HKHSBC.jpg">
+<meta property="og:updated_time" content="2019-07-29T13:38:52.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则表达式">
+<meta name="twitter:image" content="https://yeweiyan.top/2019/07/29/regexp/bg.png">
+  
+    <link rel="alternative" href="/atom.xml" title="超大神滴博客" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/img/favicon.png">
+  
+  
+      <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.5.0/animate.min.css">
+  
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+  
+  
+      <link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+  
+  <!-- 加载特效 -->
+    <script src="/js/pace.js"></script>
+    <link href="/css/pace/pace-theme-flash.css" rel="stylesheet">
+  <script>
+      var yiliaConfig = {
+          rootUrl: '/',
+          fancybox: true,
+          animate: true,
+          isHome: false,
+          isPost: true,
+          isArchive: false,
+          isTag: false,
+          isCategory: false,
+          open_in_new: false
+      }
+  </script>
+</head></html>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+    <header id="header" class="inner">
+        <a href="/" class="profilepic">
+            
+            <img lazy-src="/img/head.jpg" class="js-avatar">
+            
+        </a>
+
+        <hgroup>
+          <h1 class="header-author"><a href="/" title="Hi Mate">scq</a></h1>
+        </hgroup>
+
+        
+        <p class="header-subtitle">我的地盘我做主，嘻嘻</p>
+        
+        
+        
+            <div id="switch-btn" class="switch-btn">
+                <div class="icon">
+                    <div class="icon-ctn">
+                        <div class="icon-wrap icon-house" data-idx="0">
+                            <div class="birdhouse"></div>
+                            <div class="birdhouse_holes"></div>
+                        </div>
+                        <div class="icon-wrap icon-ribbon hide" data-idx="1">
+                            <div class="ribbon"></div>
+                        </div>
+                        
+                        
+                        <div class="icon-wrap icon-me hide" data-idx="3">
+                            <div class="user"></div>
+                            <div class="shoulder"></div>
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+                <div class="tips-box hide">
+                    <div class="tips-arrow"></div>
+                    <ul class="tips-inner">
+                        <li>菜单</li>
+                        <li>标签</li>
+                        
+                        
+                        <li>关于我</li>
+                        
+                    </ul>
+                </div>
+            </div>
+        
+
+        <div id="switch-area" class="switch-area" style="min-height: 280px;">
+            <div class="switch-wrap">
+                <section class="switch-part switch-part1">
+                    <nav class="header-menu">
+                        <ul>
+                        
+                            <li><a href="/">博客首页</a></li>
+                        
+                            <li><a href="/">作品展示</a></li>
+                        
+                            <li><a href="/">留言打卡</a></li>
+                        
+                            <li><a href="/">前端导航</a></li>
+                        
+                        </ul>
+                    </nav>
+                    <nav class="header-nav">
+                        <ul class="social">
+                            
+                                <a class="fl mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1144282310@qq.com" title="mail">mail</a>
+                            
+                                <a class="fl github" target="_blank" href="/" title="github">github</a>
+                            
+                                <a class="fl zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                            
+                                <a class="fl weibo" target="_blank" href="#" title="weibo">weibo</a>
+                            
+                                <a class="fl google" target="_blank" href="#" title="google">google</a>
+                            
+                                <a class="fl twitter" target="_blank" href="#" title="twitter">twitter</a>
+                            
+                                <a class="fl linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                            
+                        </ul>
+                    </nav>
+                </section>
+                
+                
+                <section class="switch-part switch-part2">
+                    <div class="widget tagcloud" id="js-tagcloud">
+                        <a href="/tags/H5C3/" style="font-size: 10px;">H5C3</a> <a href="/tags/chrome/" style="font-size: 10px;">chrome</a> <a href="/tags/flex布局/" style="font-size: 10px;">flex布局</a> <a href="/tags/function/" style="font-size: 10px;">function</a> <a href="/tags/http/" style="font-size: 10px;">http</a> <a href="/tags/javascript/" style="font-size: 10px;">javascript</a> <a href="/tags/js/" style="font-size: 10px;">js</a> <a href="/tags/js经验总结/" style="font-size: 10px;">js经验总结</a> <a href="/tags/v-model/" style="font-size: 10px;">v-model</a> <a href="/tags/vue/" style="font-size: 20px;">vue</a> <a href="/tags/web前端/" style="font-size: 10px;">web前端</a> <a href="/tags/前端/" style="font-size: 10px;">前端</a> <a href="/tags/原理/" style="font-size: 10px;">原理</a> <a href="/tags/原生/" style="font-size: 10px;">原生</a> <a href="/tags/去重/" style="font-size: 10px;">去重</a> <a href="/tags/双向绑定原理/" style="font-size: 10px;">双向绑定原理</a> <a href="/tags/封装/" style="font-size: 10px;">封装</a> <a href="/tags/数组/" style="font-size: 10px;">数组</a> <a href="/tags/浏览器兼容/" style="font-size: 10px;">浏览器兼容</a> <a href="/tags/生命周期函数/" style="font-size: 10px;">生命周期函数</a> <a href="/tags/网盘/" style="font-size: 10px;">网盘</a> <a href="/tags/面试/" style="font-size: 10px;">面试</a>
+                    </div>
+                </section>
+                
+                
+                
+
+                
+                
+                <section class="switch-part switch-part3">
+                
+                    <div id="js-aboutme">爱音乐、爱运动、爱交友、爱旅行、喜欢接触新鲜事物、迎接新的挑战，更爱游离于错综复杂的编码与逻辑中</div>
+                    
+                </section>
+                
+               
+            </div>
+            
+        </div>
+        <iframe  frameborder="no" border="0" marginwidth="0" marginheight="0" width=230 height=86 src="//music.163.com/outchain/player?type=2&id=29827166&auto=1&height=66"></iframe>
+    </header>                
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+      <div class="overlay">
+          <div class="slider-trigger"></div>
+          <h1 class="header-author js-mobile-header hide"><a href="/" title="Me">scq</a></h1>
+      </div>
+    <div class="intrude-less">
+        <header id="header" class="inner">
+            <a href="/" class="profilepic">
+                
+                    <img lazy-src="/img/head.jpg" class="js-avatar">
+                
+            </a>
+            <hgroup>
+              <h1 class="header-author"><a href="/" title="Me">scq</a></h1>
+            </hgroup>
+            
+            <p class="header-subtitle">我的地盘我做主，嘻嘻</p>
+            
+            <nav class="header-menu">
+                <ul>
+                
+                    <li><a href="/">博客首页</a></li>
+                
+                    <li><a href="/">作品展示</a></li>
+                
+                    <li><a href="/">留言打卡</a></li>
+                
+                    <li><a href="/">前端导航</a></li>
+                
+                <div class="clearfix"></div>
+                </ul>
+            </nav>
+            <nav class="header-nav">
+                <div class="social">
+                    
+                        <a class="mail" target="_blank" href="http://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=1144282310@qq.com" title="mail">mail</a>
+                    
+                        <a class="github" target="_blank" href="/" title="github">github</a>
+                    
+                        <a class="zhihu" target="_blank" href="#" title="zhihu">zhihu</a>
+                    
+                        <a class="weibo" target="_blank" href="#" title="weibo">weibo</a>
+                    
+                        <a class="google" target="_blank" href="#" title="google">google</a>
+                    
+                        <a class="twitter" target="_blank" href="#" title="twitter">twitter</a>
+                    
+                        <a class="linkedin" target="_blank" href="#" title="linkedin">linkedin</a>
+                    
+                </div>
+            </nav>
+        </header>                
+    </div>
+</nav>
+      <div class="body-wrap"><article id="post-regexp" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2019/07/29/regexp/" class="article-date">
+      <time datetime="2019-07-29T13:10:39.000Z" itemprop="datePublished">2019-07-29</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      正则表达式
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+
+        
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+          
+        <p><img src="/2019/07/29/regexp/bg.png" alt="Image text"></p>
+<a id="more"></a>
+<p>一个个音符杂乱无章的组合在一起，弹奏出的或许就是噪音，同样的音符经过作曲家的手，就可以谱出非常动听的乐曲，一个演奏者同样可以照着乐谱奏出动听的乐曲，但他/她或许不知道该如何去改变音符的组合，使得乐曲更动听。</p>
+<p>作为正则的使用者也一样，不懂正则引擎原理的情况下，同样可以写出满足需求的正则，但是不知道原理，却很难写出高效且没有隐患的正则。所以对于经常使用正则，或是有兴趣深入学习正则的人，还是有必要了解一下正则引擎的匹配原理的。</p>
+<p>定义<br>正则表达式（regular expression）是一个描述字符模式的对象，使用正则表达式可以进行强大的模式匹配和文本检索与替换功能。</p>
+<p>JavaScript 的正则表达式语法是 Perl5 的正则表达式语法的大型子集，所以对于有 Perl 编程经验的程序员来说，学习 JavaScript 中的正则表达式是小菜一碟。</p>
+<p>正则表达式是描述字符模式的对象，用于对字符串模式匹配及检索替换，是对字符串执行模式匹配的强大工具。<br>JavaScript中的正则表达式用RegExp对象表示，可以使用RegExp()构造函数来创建RegExp对象，不过RegExp对象更多是通过字面量的语法来创建。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- // 不推荐写法 --&gt;</span><br><span class="line">var patt = new RegExp(pattern模式,modifiers修饰符)</span><br><span class="line">&lt;!-- // 匹配所有的a或A --&gt;</span><br><span class="line">var reg = new RegExp(<span class="string">"a"</span>,<span class="string">"gi"</span>)</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>字面量</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- // 推荐写法 --&gt;</span><br><span class="line">var patt = /pattern/modifiers</span><br><span class="line">&lt;!-- // 匹配所有的a或A --&gt;</span><br><span class="line">var reg = /a/gi</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="function"><span class="title">getRE</span></span>()&#123;</span><br><span class="line">	var re = /[a-z]/</span><br><span class="line">	re.foo = <span class="string">'bar'</span></span><br><span class="line">	<span class="built_in">return</span> re</span><br><span class="line">&#125;</span><br><span class="line">var reg = getRE()</span><br><span class="line">re2 = getRE()</span><br><span class="line">console.log(reg === re2)</span><br><span class="line">reg.foo = <span class="string">'baz'</span></span><br><span class="line">console.log(re2.foo)</span><br><span class="line">ECMAScript3同一对象</span><br><span class="line">&lt;!-- // <span class="literal">true</span> --&gt;</span><br><span class="line">&lt;!-- // <span class="string">"baz"</span> --&gt;</span><br><span class="line">ECMAScript5不同对象</span><br><span class="line">&lt;!-- // <span class="literal">false</span> --&gt;</span><br><span class="line">&lt;!-- // <span class="string">"bar"</span> --&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="表达式"><a href="#表达式" class="headerlink" title="表达式"></a>表达式</h3><table>
+<thead>
+<tr>
+<th align="center">表达式</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">i</td>
+<td align="left">执行对大小写不敏感的匹配</td>
+</tr>
+<tr>
+<td align="center">g</td>
+<td align="left">执行全局匹配模式（查找所有匹配而非在找到第一个匹配后停止）</td>
+</tr>
+<tr>
+<td align="center">m</td>
+<td align="left">执行多行匹配模式</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'HwwwwLwello orllld lLll!'</span></span><br><span class="line">console.log(str.match(/l/))</span><br><span class="line">&lt;!-- // [<span class="string">"l"</span>, index: 8, input: <span class="string">"HwwwwLwello orllld lLll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l/i))</span><br><span class="line">&lt;!-- // [<span class="string">"L"</span>, index: 5, input: <span class="string">"HwwwwLwello orllld lLll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l/g))</span><br><span class="line">&lt;!-- // [<span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'Hwwwwl\nwello orllld lLll!'</span></span><br><span class="line">console.log(str)</span><br><span class="line">&lt;!-- // Hwwwwl --&gt;</span><br><span class="line">&lt;!-- // wello orllld lLll! --&gt;</span><br><span class="line">console.log(str.match(/l$/))</span><br><span class="line">&lt;!-- // null --&gt;</span><br><span class="line">console.log(str.match(/l$/m))</span><br><span class="line">&lt;!-- // [<span class="string">"l"</span>, index: 5, input: <span class="string">"Hwwwwl↵wello orllld lLll!"</span>] --&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="元字符"><a href="#元字符" class="headerlink" title="元字符"></a>元字符</h3><p>与其他语言中的正则表达式类似，模式中使用的所有元字符都必须转义。正则表达式中的元字符包括：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">( [ &#123; \ ^ $ | ) ? * + . ] &#125;</span><br></pre></td></tr></table></figure>
+
+<p>这些元字符在正则表达式中都有一或多种特殊用途，因此如果想要匹配字符串中包含的这些字符，就必须对它们进行转义。<br>下面给出几个例子。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">var pattern1 = /[bc]at/i</span><br><span class="line">&lt;!-- // 匹配第一个<span class="string">"bat"</span>或<span class="string">"cat"</span>，不区分大小写 --&gt;</span><br><span class="line">var pattern2 = /\[bc\]at/i</span><br><span class="line">&lt;!-- // 匹配第一个<span class="string">" [bc]at"</span>，不区分大小写 --&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="直接量字符"><a href="#直接量字符" class="headerlink" title="直接量字符"></a>直接量字符</h3><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">字母数字</td>
+<td align="left">自身</td>
+</tr>
+<tr>
+<td align="center">\0</td>
+<td align="left">查找 NUL 字符（\u0000）</td>
+</tr>
+<tr>
+<td align="center">\t</td>
+<td align="left">查找制表符（\u0009）</td>
+</tr>
+<tr>
+<td align="center">\v</td>
+<td align="left">查找垂直制表符（\u000A）</td>
+</tr>
+<tr>
+<td align="center">\n</td>
+<td align="left">查找换行符（\u000B）</td>
+</tr>
+<tr>
+<td align="center">\f</td>
+<td align="left">查找换页符（\u000C）</td>
+</tr>
+<tr>
+<td align="center">\r</td>
+<td align="left">查找回车符（\u000D）</td>
+</tr>
+<tr>
+<td align="center">\xdd</td>
+<td align="left">查找以十六进制数 dd 规定的字符（\x0A =&gt; \n）</td>
+</tr>
+<tr>
+<td align="center">\uxxxx</td>
+<td align="left">查找以十六进制数 xxxx 规定的 Unicode 字符（\u0009 =&gt; \t）</td>
+</tr>
+<tr>
+<td align="center">\cX</td>
+<td align="left">控制字符^X （\cJ =&gt; \n）</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'null \t \n \f \r '</span></span><br><span class="line">console.log(str.match(/\n/))</span><br><span class="line">// [<span class="string">"↵"</span>, index: 7, input: <span class="string">"null 	 ↵   "</span>]</span><br><span class="line">console.log(str.match(/\f/))</span><br><span class="line">// [<span class="string">""</span>, index: 9, input: <span class="string">"null 	 ↵   "</span>]</span><br><span class="line">var str=<span class="string">'null'</span></span><br><span class="line">console.log(str.test(/\0/))</span><br><span class="line">//</span><br></pre></td></tr></table></figure>
+
+<p><img src="/2019/07/29/regexp/my-first-boke/Hong_Kong_Skyline_by_HKHSBC.jpg" alt="Image text"></p>
+<h3 id="字符类"><a href="#字符类" class="headerlink" title="字符类"></a>字符类</h3><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">.</td>
+<td align="left">查找单个字符，除了换行和行结束符</td>
+</tr>
+<tr>
+<td align="center">\w</td>
+<td align="left">(word)查找单词字符：[a-zA-Z_0-9]（单词字符包括：a-z、A-Z、0-9，以及下划线）</td>
+</tr>
+<tr>
+<td align="center">\W</td>
+<td align="left">查找非单词字符：[^a-zA-Z_0-9]（单词字符包括：a-z、A-Z、0-9，以及下划线）</td>
+</tr>
+<tr>
+<td align="center">\s</td>
+<td align="left">(white space)查找空白字符</td>
+</tr>
+<tr>
+<td align="center">\S</td>
+<td align="left">查找非空白字符</td>
+</tr>
+<tr>
+<td align="center">\d</td>
+<td align="left">(digit)查找数字：0-9</td>
+</tr>
+<tr>
+<td align="center">\D</td>
+<td align="left">查找非数字字符：[^0-9]</td>
+</tr>
+<tr>
+<td align="center">0-9</td>
+<td align="left">查找任何从 0 至 9 的数字</td>
+</tr>
+<tr>
+<td align="center">[a-z]</td>
+<td align="left">查找任何从小写 a 到小写 z 的字符</td>
+</tr>
+<tr>
+<td align="center">[A-Z]</td>
+<td align="left">查找任何从大写 A 到大写 Z 的字符</td>
+</tr>
+<tr>
+<td align="center">[A-z]</td>
+<td align="left">查找任何从大写 A 到小写 z 的字符</td>
+</tr>
+<tr>
+<td align="center">[…]</td>
+<td align="left">查找方括号之间的任何字符（没有顺序同级）</td>
+</tr>
+<tr>
+<td align="center">[^…]</td>
+<td align="left">查找不在方括号之间的任何字符</td>
+</tr>
+<tr>
+<td align="center">[adgk]</td>
+<td align="left">查找给定集合内的任何字符</td>
+</tr>
+<tr>
+<td align="center">[^adgk]</td>
+<td align="left">查找给定集合外的任何字符</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'3 o !_..'</span></span><br><span class="line">console.log(str.match(/\w/g))</span><br><span class="line">&lt;!-- // [<span class="string">"3"</span>, <span class="string">"o"</span>, <span class="string">"_"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'3 o !_..'</span></span><br><span class="line">console.log(str.match(/\W/g))</span><br><span class="line">&lt;!-- // [<span class="string">" "</span>, <span class="string">" "</span>, <span class="string">"!"</span>, <span class="string">"."</span>, <span class="string">"."</span>] --&gt;</span><br><span class="line">var str=<span class="string">'3 o !_..'</span></span><br><span class="line">console.log(str.match(/\s/g))</span><br><span class="line">&lt;!-- // [<span class="string">" "</span>, <span class="string">" "</span>] --&gt;</span><br><span class="line">var str=<span class="string">'3 o !_..'</span></span><br><span class="line">console.log(str.match(/\S/g))</span><br><span class="line">&lt;!-- // [<span class="string">"3"</span>, <span class="string">"o"</span>, <span class="string">"!"</span>, <span class="string">"_"</span>, <span class="string">"."</span>, <span class="string">"."</span>] --&gt;</span><br><span class="line">var str=<span class="string">'3 o !_..'</span></span><br><span class="line">console.log(str.match(/\d/g))</span><br><span class="line">&lt;!-- // [<span class="string">"3"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'3 o !_..'</span></span><br><span class="line">console.log(str.match(/\b/g))</span><br><span class="line">&lt;!-- // [<span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>, <span class="string">""</span>] --&gt;</span><br><span class="line">注：单词前后</span><br><span class="line">var str=<span class="string">'3 o A!_..'</span></span><br><span class="line">console.log(str.match(/[A-Z]/g))</span><br><span class="line">&lt;!-- // [<span class="string">"A"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'3 o A!_..'</span></span><br><span class="line">console.log(str.match(/[A-z]/g))</span><br><span class="line">&lt;!-- // [<span class="string">"o"</span>, <span class="string">"A"</span>, <span class="string">"_"</span>] --&gt;</span><br><span class="line">注：此处出现了<span class="string">"_"</span>，a-z、A-Z，以及下划线</span><br><span class="line">var str=<span class="string">'12323 orllbld lLll!'</span></span><br><span class="line">console.log(str.match(/[abc]/g))</span><br><span class="line">&lt;!-- // [<span class="string">"b"</span>] --&gt;</span><br><span class="line">console.log(str.match(/[ro3]/g))</span><br><span class="line">&lt;!-- // [<span class="string">"3"</span>, <span class="string">"3"</span>, <span class="string">"o"</span>, <span class="string">"r"</span>] --&gt;</span><br><span class="line">console.log(str.match(/[^abc]/g))</span><br><span class="line">&lt;!-- // [<span class="string">"1"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">"2"</span>, <span class="string">"3"</span>, <span class="string">" "</span>, <span class="string">"o"</span>, <span class="string">"r"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"d"</span>, <span class="string">" "</span>, <span class="string">"l"</span>, <span class="string">"L"</span>, <span class="string">"l"</span>, <span class="string">"l"</span>, <span class="string">"!"</span>] --&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="重复字符"><a href="#重复字符" class="headerlink" title="重复字符"></a>重复字符</h3><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">X{n,m}</td>
+<td align="left">匹配包含 n 至 m 个 X 的序列的字符串。</td>
+</tr>
+<tr>
+<td align="center">X{n,}</td>
+<td align="left">匹配包含至少 n 个 X 的序列的字符串。</td>
+</tr>
+<tr>
+<td align="center">X{n}</td>
+<td align="left">匹配包含 n 个 X 的序列的字符串。</td>
+</tr>
+<tr>
+<td align="center">X?</td>
+<td align="left">(有吗?)匹配任何包含零个或一个 X 的字符串 {0,1}</td>
+</tr>
+<tr>
+<td align="center">X+</td>
+<td align="left">(加号是追加的意思)匹配任何包含至少一个 X 的字符串 {1,}</td>
+</tr>
+<tr>
+<td align="center">X*</td>
+<td align="left">(任意次)匹配任何包含零个或多个 X 的字符串 {0,}</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'Hwwwwlllll orlllld lll!'</span></span><br><span class="line">console.log(str.match(/l&#123;3,5&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">"lllll"</span>, index: 5, input: <span class="string">"Hwwwwlllll orlllld lll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l&#123;2,3&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">"lll"</span>, index: 5, input: <span class="string">"Hwwwwlllll orlllld lll!"</span>] --&gt;</span><br><span class="line">注：匹配出去l为3、4、5</span><br><span class="line">console.log(str.match(/l&#123;0,1&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">""</span>, index: 0, input: <span class="string">"Hwwwwlllll orlllld lll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l?/))</span><br><span class="line">&lt;!-- // [<span class="string">""</span>, index: 0, input: <span class="string">"Hwwwwlllll orlllld lll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l&#123;1,&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">"lllll"</span>, index: 5, input: <span class="string">"Hwwwwlllll orlllld lll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l+/))</span><br><span class="line">&lt;!-- // [<span class="string">"lllll"</span>, index: 5, input: <span class="string">"Hwwwwlllll orlllld lll!"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'Hwwwwwello orllld llll!'</span></span><br><span class="line">console.log(str.match(/l&#123;3,5&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">"lll"</span>, index: 13, input: <span class="string">"Hwwwwwello orllld llll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l&#123;1,4&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">"ll"</span>, index: 7, input: <span class="string">"Hwwwwwello orllld llll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l&#123;2&#125;/))</span><br><span class="line">注：匹配两个l</span><br><span class="line">&lt;!-- // [<span class="string">"ll"</span>, index: 7, input: <span class="string">"Hwwwwwello orllld llll!"</span>] --&gt;</span><br><span class="line">console.log(str.match(/l&#123;4,&#125;/))</span><br><span class="line">&lt;!-- // [<span class="string">"llll"</span>, index: 18, input: <span class="string">"Hwwwwwello orllld llll!"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'01'</span>;</span><br><span class="line">console.log(str.match(/0?/));</span><br><span class="line">&lt;!-- // [<span class="string">"0"</span>, index: 0, input: <span class="string">"01"</span>] --&gt;</span><br><span class="line">console.log(str.match(/1?/));</span><br><span class="line">&lt;!-- // [<span class="string">""</span>, index: 0, input: <span class="string">"01"</span>] --&gt;</span><br><span class="line">注：尽可能少的匹配&#123;0,1&#125;</span><br><span class="line">console.log(str.match(/0*/));</span><br><span class="line">&lt;!-- // [<span class="string">"0"</span>, index: 0, input: <span class="string">"01"</span>] --&gt;</span><br><span class="line">console.log(str.match(/1*/));</span><br><span class="line">&lt;!-- // [<span class="string">""</span>, index: 0, input: <span class="string">"01"</span>] --&gt;</span><br><span class="line">注：&#123;0,&#125;</span><br><span class="line">console.log(str.match(/1+/));</span><br><span class="line">&lt;!-- // [<span class="string">"1"</span>, index: 1, input: <span class="string">"01"</span>] --&gt;</span><br><span class="line">注：&#123;1,&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="非贪婪重复"><a href="#非贪婪重复" class="headerlink" title="非贪婪重复"></a>非贪婪重复</h3><blockquote>
+<p>尽可能少的匹配：??、+?、*?、{1,4}?</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'0111'</span></span><br><span class="line">console.log(str.match(/00?/))</span><br><span class="line">&lt;!-- [<span class="string">"0"</span>, index: 0, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">console.log(str.match(/01?/))</span><br><span class="line">&lt;!-- [<span class="string">"01"</span>, index: 0, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">console.log(str.match(/11?/))</span><br><span class="line">&lt;!-- [<span class="string">"11"</span>, index: 1, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">console.log(str.match(/01+/))</span><br><span class="line">&lt;!-- [<span class="string">"0111"</span>, index: 0, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">console.log(str.match(/01+?/))</span><br><span class="line">&lt;!-- [<span class="string">"01"</span>, index: 0, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">注：&#123;1&#125;</span><br><span class="line">var str=<span class="string">'0111'</span></span><br><span class="line">console.log(str.match(/11??/))</span><br><span class="line">&lt;!-- [<span class="string">"1"</span>, index: 1, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">console.log(str.match(/01??/))</span><br><span class="line">&lt;!-- [<span class="string">"0"</span>, index: 0, input: <span class="string">"011"</span>] --&gt;</span><br><span class="line">console.log(str.match(/01*/))</span><br><span class="line">&lt;!-- [<span class="string">"0111"</span>, index: 0, input: <span class="string">"0111"</span>] --&gt;</span><br><span class="line">console.log(str.match(/01*?/))</span><br><span class="line">&lt;!-- [<span class="string">"0"</span>, index: 0, input: <span class="string">"0111"</span>] --&gt;</span><br><span class="line">注：?? = *? ==》 &#123;0&#125;</span><br><span class="line">var str=<span class="string">'0111'</span></span><br><span class="line">console.log(str.match(/1&#123;1,4&#125;?/))</span><br><span class="line">&lt;!-- [<span class="string">"1"</span>, index: 1, input: <span class="string">"0111"</span>] --&gt;</span><br><span class="line">var regex = /\d&#123;2,5&#125;?/g;</span><br><span class="line">var string = <span class="string">"123 1234 12345 123456"</span>;</span><br><span class="line">console.log(string.match(regex));</span><br><span class="line">// =&gt; [<span class="string">"12"</span>, <span class="string">"12"</span>, <span class="string">"34"</span>, <span class="string">"12"</span>, <span class="string">"34"</span>, <span class="string">"12"</span>, <span class="string">"34"</span>, <span class="string">"56"</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="锚字符"><a href="#锚字符" class="headerlink" title="锚字符"></a>锚字符</h3><table>
+<thead>
+<tr>
+<th align="center">字符</th>
+<th align="left">描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">^</td>
+<td align="left">匹配字符串开头(用正则表达式处理多行时匹配行的开始)</td>
+</tr>
+<tr>
+<td align="center">$</td>
+<td align="left">匹配字符串结尾(处理多行时匹配行尾)</td>
+</tr>
+<tr>
+<td align="center">\b</td>
+<td align="left">匹配单词边界</td>
+</tr>
+<tr>
+<td align="center">\B</td>
+<td align="left">匹配非单词边界</td>
+</tr>
+<tr>
+<td align="center">(?=p)</td>
+<td align="left">零宽正向先行断言，要求接下来的字符都与p匹配，但不能包括匹配p的那些字符 (?=p) =&gt; p</td>
+</tr>
+<tr>
+<td align="center">(?!p)</td>
+<td align="left">零宽正向先行断言，要求接下来的字符不与p匹配 (?!p) =&gt; [^p]</td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'orllld'</span></span><br><span class="line">console.log(str.match(/^o/))</span><br><span class="line">&lt;!-- // [<span class="string">"o"</span>, index: 0, input: <span class="string">"orllld"</span>] --&gt;</span><br><span class="line">console.log(str.match(/d$/))</span><br><span class="line">&lt;!-- // [<span class="string">"d"</span>, index: 5, input: <span class="string">"orllld"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'orllld'</span></span><br><span class="line">&lt;!-- 0o1r2l3l4l5d6 --&gt;</span><br><span class="line">console.log(str.replace(/(?=d)/, <span class="string">','</span>))</span><br><span class="line">&lt;!-- // [<span class="string">""</span>, index: 5, input: <span class="string">"orllld"</span>] --&gt;</span><br><span class="line">&lt;!-- // orlll,d --&gt;</span><br><span class="line">var str=<span class="string">'orllld '</span></span><br><span class="line">console.log(str.match(/d$/))</span><br><span class="line">&lt;!-- // null --&gt;</span><br><span class="line">console.log(str.match(/l(?=d)/))</span><br><span class="line">&lt;!-- // [<span class="string">"l"</span>, index: 4, input: <span class="string">"orllld "</span>] --&gt;</span><br><span class="line">console.log(str.match(/l(?!d)/))</span><br><span class="line">&lt;!-- // [<span class="string">"l"</span>, index: 2, input: <span class="string">"orllld "</span>] --&gt;</span><br><span class="line">var str=<span class="string">'JavaScript'</span></span><br><span class="line">console.log(str.match(/Java(Script)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // null --&gt;</span><br><span class="line">console.log(str.match(/Java(?=Script)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // [<span class="string">"JavaScript"</span>, <span class="string">"Script"</span>, index: 0, input: <span class="string">"JavaScript"</span>] --&gt;</span><br><span class="line">console.log(str.match(/Java(?=Bcript)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // null --&gt;</span><br><span class="line">console.log(str.match(/Java(?!Script)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // null --&gt;</span><br><span class="line">console.log(str.match(/Java(?!Bcript)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // [<span class="string">"JavaScript"</span>, <span class="string">"Bcript"</span>, index: 0, input: <span class="string">"JavaScript"</span>] --&gt;</span><br><span class="line">var str=<span class="string">'JavaScriptS'</span></span><br><span class="line">console.log(str.match(/Java(Script)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // null --&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">var str=<span class="string">'JavaScriptS'</span></span><br><span class="line">console.log(str.replace(/Java(?!Script)([A-Z]\w*)/, <span class="keyword">function</span>(<span class="variable">$0</span>, <span class="variable">$1</span>, <span class="variable">$2</span>) &#123;</span><br><span class="line">		<span class="built_in">return</span> <span class="variable">$0</span> + <span class="string">','</span> + <span class="variable">$1</span> + <span class="string">','</span> + <span class="variable">$2</span></span><br><span class="line">	&#125;))</span><br><span class="line">&lt;!-- // JavaScriptS --&gt;</span><br><span class="line">var str=<span class="string">'JavaSs'</span></span><br><span class="line">console.log(str.match(/Java(?!Script)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // [<span class="string">"JavaSs"</span>, <span class="string">"Ss"</span>, index: 0, input: <span class="string">"JavaSs"</span>] --&gt;</span><br><span class="line">console.log(str.replace(/Java(?!Script)([A-Z]\w*)/, <span class="keyword">function</span>(<span class="variable">$0</span>, <span class="variable">$1</span>, <span class="variable">$2</span>) &#123;</span><br><span class="line">		<span class="built_in">return</span> <span class="variable">$0</span> + <span class="string">','</span> + <span class="variable">$1</span> + <span class="string">','</span> + <span class="variable">$2</span></span><br><span class="line">	&#125;))</span><br><span class="line">&lt;!-- // JavaSs,Ss,0 --&gt;</span><br><span class="line">var str=<span class="string">'JavaType'</span></span><br><span class="line">console.log(str.match(/Java(?!Script)([A-Z]\w*)/))</span><br><span class="line">&lt;!-- // [<span class="string">"JavaType"</span>, <span class="string">"Type"</span>, index: 0, input: <span class="string">"JavaType"</span>] --&gt;</span><br></pre></td></tr></table></figure>
+
+<p><a href="https://www.jianshu.com/p/1b4068ccd505" target="_blank" rel="noopener">算法结构一：简书</a></p>
+<p><a href="https://www.jianshu.com/p/0f56afd5122e?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation" target="_blank" rel="noopener">算法结构二：简书</a></p>
+<p><a href="https://www.jianshu.com/p/e02ff2afd300?utm_campaign=maleskine&utm_content=note&utm_medium=seo_notes&utm_source=recommendation" target="_blank" rel="noopener">算法结构三：简书</a></p>
+<p><a href="https://luuman.github.io/2018/02/27/Induce/JavaScript/Base/1.10-RegExpObjects/#more" target="_blank" rel="noopener">出处</a></p>
+
+      
+      
+        <div class="page-reward">
+          <p><a href="javascript:void(0)" onclick="dashangToggle()" class="dashang">赏</a></p>
+          <div class="hide_box"></div>
+          <div class="shang_box">
+            <a class="shang_close" href="javascript:void(0)" onclick="dashangToggle()">×</a>
+            <div class="shang_tit">
+              <p>纯属好玩</p>
+            </div>
+            <div class="shang_payimg">
+              <img src="/img/alipayimg.jpg" alt="扫码支持" title="扫一扫" />
+            </div>
+              <div class="pay_explain">赏我点糖果吃吃</div>
+            <div class="shang_payselect">
+              
+                <div class="pay_item checked" data-id="alipay">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/alipay.png" alt="支付宝" /></span>
+                </div>
+              
+              
+                <div class="pay_item" data-id="wechat">
+                  <span class="radiobox"></span>
+                  <span class="pay_logo"><img src="/img/wexin.png" alt="微信" /></span>
+                </div>
+              
+            </div>
+            <div class="shang_info">
+              <p>打开<span id="shang_pay_txt">支付宝</span>扫一扫，即可进行扫码打赏哦</p>
+            </div>
+          </div>
+        </div>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/zepto/1.2.0/zepto.min.js"></script>
+        <script type="text/javascript">
+          $(".pay_item").click(function(){
+            $(this).addClass('checked').siblings('.pay_item').removeClass('checked');
+            var dataid=$(this).attr('data-id');
+            $(".shang_payimg img").attr("src","/img/"+dataid+"img.jpg");
+            $("#shang_pay_txt").text(dataid=="alipay"?"支付宝":"微信");
+          });
+          function dashangToggle(){
+            
+            $(".hide_box").fadeToggle();
+            $(".shang_box").fadeToggle();
+          }
+        </script>
+      
+    </div>
+    
+  </div>
+  
+    
+    <div class="copyright">
+        <p><span>本文标题:</span><a href="/2019/07/29/regexp/">正则表达式</a></p>
+        <p><span>文章作者:</span><a href="/" title="访问 scq 的个人博客">scq</a></p>
+        <p><span>发布时间:</span>2019年07月29日 - 21时10分</p>
+        <p><span>最后更新:</span>2019年07月29日 - 21时38分</p>
+        <p>
+            <span>原始链接:</span><a class="post-url" href="/2019/07/29/regexp/" title="正则表达式">https://yeweiyan.top/2019/07/29/regexp/</a>
+            <span class="copy-path" data-clipboard-text="原文: https://yeweiyan.top/2019/07/29/regexp/　　作者: scq" title="点击复制文章链接"><i class="fa fa-clipboard"></i></span>
+            <script src="/js/clipboard.min.js"></script>
+            <script> var clipboard = new Clipboard('.copy-path'); </script>
+        </p>
+        <p>
+            <span>许可协议:</span><i class="fa fa-creative-commons"></i> <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/3.0/cn/" title="中国大陆 (CC BY-NC-SA 3.0 CN)" target = "_blank">"署名-非商用-相同方式共享 3.0"</a> 转载请保留原文链接及作者。
+        </p>
+    </div>
+
+
+
+<nav id="article-nav">
+  
+    <a href="/2019/07/29/summary/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          summary
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/07/29/music/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">music</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+    <div id="toc" class="toc-article">
+    <strong class="toc-title">文章目录</strong>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#表达式"><span class="toc-number">1.</span> <span class="toc-text">表达式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#元字符"><span class="toc-number">2.</span> <span class="toc-text">元字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#直接量字符"><span class="toc-number">3.</span> <span class="toc-text">直接量字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#字符类"><span class="toc-number">4.</span> <span class="toc-text">字符类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#重复字符"><span class="toc-number">5.</span> <span class="toc-text">重复字符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#非贪婪重复"><span class="toc-number">6.</span> <span class="toc-text">非贪婪重复</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#锚字符"><span class="toc-number">7.</span> <span class="toc-text">锚字符</span></a></li></ol>
+</div>
+<input type="button" id="tocButton" value="隐藏目录"  title="点击按钮隐藏或者显示文章目录">
+
+<script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script>
+    var valueHide = "隐藏目录";
+    var valueShow = "显示目录";
+
+    if ($(".left-col").is(":hidden")) {
+        $("#tocButton").attr("value", valueShow);
+    }
+    $("#tocButton").click(function() {
+        if ($("#toc").is(":hidden")) {
+            $("#tocButton").attr("value", valueHide);
+            $("#toc").slideDown(320);
+        }
+        else {
+            $("#tocButton").attr("value", valueShow);
+            $("#toc").slideUp(350);
+        }
+    })
+    if ($(".toc").length < 1) {
+        $("#toc, #tocButton").hide();
+    }
+</script>
+
+
+
+
+
+<div class="bdsharebuttonbox">
+	<a href="#" class="fx fa-weibo bds_tsina" data-cmd="tsina" title="分享到新浪微博"></a>
+	<a href="#" class="fx fa-weixin bds_weixin" data-cmd="weixin" title="分享到微信"></a>
+	<a href="#" class="fx fa-qq bds_sqq" data-cmd="sqq" title="分享到QQ好友"></a>
+	<a href="#" class="fx fa-facebook-official bds_fbook" data-cmd="fbook" title="分享到Facebook"></a>
+	<a href="#" class="fx fa-twitter bds_twi" data-cmd="twi" title="分享到Twitter"></a>
+	<a href="#" class="fx fa-linkedin bds_linkedin" data-cmd="linkedin" title="分享到linkedin"></a>
+	<a href="#" class="fx fa-files-o bds_copy" data-cmd="copy" title="分享到复制网址"></a>
+</div>
+<script>window._bd_share_config={"common":{"bdSnsKey":{},"bdText":"","bdMini":"2","bdMiniList":false,"bdPic":"","bdStyle":"2","bdSize":"24"},"share":{}};with(document)0[(getElementsByTagName('head')[0]||body).appendChild(createElement('script')).src='/static/api/js/share.js?v=89860593.js?cdnversion='+~(-new Date()/36e5)];</script>
+
+
+
+
+    
+        <!-- <div id="gitments"></div>
+<script src="/js/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+      id: window.location.pathname,
+      owner: '',
+      repo: '',
+      oauth: {
+        client_id: '',
+        client_secret: '',
+      },
+    })
+    gitment.render('gitments')
+</script> -->
+    
+
+
+
+    <div class="scroll" id="post-nav-button">
+        
+            <a href="/2019/07/29/summary/" title="上一篇: summary">
+                <i class="fa fa-angle-left"></i>
+            </a>
+        
+        <a title="文章列表"><i class="fa fa-bars"></i><i class="fa fa-times"></i></a>
+        
+            <a href="/2019/07/29/music/" title="下一篇: music">
+                <i class="fa fa-angle-right"></i>
+            </a>
+        
+    </div>
+    <ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/vue_v-modle/">vue双向绑定原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/vue-cllblack/">vue-cllblack</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/summary/">summary</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/regexp/">正则表达式</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/music/">music</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/js-Bulletframe/">js弹框</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/H5C3-new/">H5C3属性</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/flex/">flex</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/encapsulation/">encapsulation</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/baiduW/">百度网盘《齐天大圣资源》</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/ArrayNot/">ArrayNot</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/http-Principle/">http原理</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/web-nterview/">前端面试</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/07/29/browser-Compatible/">浏览器兼容</a></li></ul>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+    <script>
+        $(".post-list").addClass("toc-article");
+        $(".post-list-item a").attr("target","_blank");
+        $("#post-nav-button > a:nth-child(2)").click(function() {
+            $(".fa-bars, .fa-times").toggle();
+            $(".post-list").toggle(300);
+            if ($(".toc").length > 0) {
+                $("#toc, #tocButton").toggle(200, function() {
+                    if ($(".switch-area").is(":visible")) {
+                        $("#tocButton").attr("value", valueHide);
+                        }
+                    })
+            }
+            else {
+            }
+        })
+    </script>
+
+
+
+    <script>
+        
+    </script>
+</div>
+      <footer id="footer">
+    <div class="outer">
+        <div id="footer-info">
+            <div class="footer-left">
+                &copy; 2019 scq
+            </div>
+            <div class="footer-right">
+                <a href="javascript:" target="_blank">博客</a>   <a href="" target="_blank"></a> 
+            </div>
+        </div>
+        
+            <div class="visit">
+                
+                    <span id="busuanzi_container_site_pv" style='display:none'>
+                        <span id="site-visit" >海贼到访数: 
+                            <span id="busuanzi_value_site_uv"></span>
+                        </span>
+                    </span>
+                
+                
+                    <span>, </span>
+                
+                
+                    <span id="busuanzi_container_page_pv" style='display:none'>
+                        <span id="page-visit">本页阅读量: 
+                            <span id="busuanzi_value_page_pv"></span>
+                        </span>
+                    </span>
+                
+            </div>
+        
+    </div>
+</footer>
+
+    </div>
+    <script src="https://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js"></script>
+<script src="/js/main.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            var backgroundnum = 24;
+            var backgroundimg = "url(/background/bg-x.jpg)".replace(/x/gi, Math.ceil(Math.random() * backgroundnum));
+            $("#mobile-nav").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+            $(".left-col").css({"background-image": backgroundimg,"background-size": "cover","background-position": "center"});
+        })
+    </script>
+
+
+
+
+
+<div class="scroll" id="scroll">
+    <a href="#"><i class="fa fa-arrow-up"></i></a>
+    <a href="#comments"><i class="fa fa-comments-o"></i></a>
+    <a href="#footer"><i class="fa fa-arrow-down"></i></a>
+</div>
+<script>
+    $(document).ready(function() {
+        if ($("#comments").length < 1) {
+            $("#scroll > a:nth-child(2)").hide();
+        };
+    })
+</script>
+
+<script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js">
+</script>
+
+  <script language="javascript">
+    $(function() {
+        $("a[title]").each(function() {
+            var a = $(this);
+            var title = a.attr('title');
+            if (title == undefined || title == "") return;
+            a.data('title', title).removeAttr('title').hover(
+
+            function() {
+                var offset = a.offset();
+                $("<div id=\"anchortitlecontainer\"></div>").appendTo($("body")).html(title).css({
+                    top: offset.top - a.outerHeight() - 15,
+                    left: offset.left + a.outerWidth()/2 + 1
+                }).fadeIn(function() {
+                    var pop = $(this);
+                    setTimeout(function() {
+                        pop.remove();
+                    }, pop.text().length * 800);
+                });
+            }, function() {
+                $("#anchortitlecontainer").remove();
+            });
+        });
+    });
+</script>
+
+
+  </div>
+</body>
+</html>
